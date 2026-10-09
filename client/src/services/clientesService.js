@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "https://fakestoreapi.com/users";
+const URL = "http://localhost:3001/api/clientes";
 
 // Crea un nuevo cliente en la API
 const crearCliente = async (cliente) => {
