@@ -10,14 +10,14 @@ Pruebas del backend de FoodFast realizadas con Thunder Client (VS Code) contra e
 | Punto de control | Resultado | Captura |
 |---|---|---|
 | El frontend corre en `localhost:5173` sin errores | Aprobado | ![Frontend en localhost:5173](capturas/01-frontend.png) |
-| El servidor responde en `localhost:3001` | Pendiente | |
+| El servidor responde en `localhost:3001` | Aprobado | ![Health](capturas/02-health.png) |
 | Los datos persisten en MongoDB Atlas | Pendiente | |
 
 ## Pruebas de la API
 
 | N° | Prueba | Método y URL | Resultado esperado | Resultado obtenido | Estado | Captura |
 |---|---|---|---|---|---|---|
-| 1 | Estado del servidor y la base | GET `/api/health` | `status: ok` y `mongodb: conectado` | Pendiente | Pendiente | |
+| 1 | Estado del servidor y la base | GET `/api/health` | `status: ok` y `mongodb: conectado` | `{"status":"ok","mongodb":"conectado"}` | Aprobado | ![Health](capturas/02-health.png) |
 | 2 | Listar clientes | GET `/api/clientes` | Lista de clientes (puede estar vacía) | Pendiente | Pendiente | |
 | 3 | Crear cliente | POST `/api/clientes` | Devuelve el cliente creado con su `_id` | Pendiente | Pendiente | |
 | 4 | Obtener cliente por id | GET `/api/clientes/:id` | Devuelve el cliente creado en la prueba 3 | Pendiente | Pendiente | |
