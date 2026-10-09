@@ -9,7 +9,7 @@ Pruebas del backend de FoodFast realizadas con Thunder Client (VS Code) contra e
 
 | Punto de control | Resultado | Captura |
 |---|---|---|
-| El frontend corre en `localhost:5173` sin errores | Pendiente | |
+| El frontend corre en `localhost:5173` sin errores | Aprobado | ![Frontend en localhost:5173](capturas/01-frontend.png) |
 | El servidor responde en `localhost:3001` | Pendiente | |
 | Los datos persisten en MongoDB Atlas | Pendiente | |
 
