@@ -25,7 +25,8 @@ Este proyecto necesita un archivo `.env` en la raíz con los usuarios de prueba 
 
 1. Copiar `.env.example` y renombrar la copia a `.env`.
 2. Completar `VITE_MOCK_USERS` con el array de usuarios de prueba (email, password, nombre, sector).
-3. El archivo `.env` no se sube al repositorio (está en `.gitignore`).
+3. Al archivo añadir `VITE_API_URL=URL`, reemplazando URL con del backend (por defecto, localhost:3001/api).
+4. El archivo `.env` no se sube al repositorio (está en `.gitignore`).
 
 ## Licencia de Uso
 
