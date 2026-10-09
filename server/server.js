@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const clientesRoutes = require('./routes/clientes.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -19,6 +20,7 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', mongodb: estados[dbState] });
 });
 
+app.use('/api/clientes', clientesRoutes);
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
