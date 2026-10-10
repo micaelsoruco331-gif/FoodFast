@@ -38,7 +38,7 @@ const Dashboard = () => {
 
           <div className="dashboard-card">
             <h3>Clientes</h3>
-            <p>{usuarios.length}</p>
+            <p>{cantidadClientes ?? '...'}</p>
           </div>
 
           <div className="dashboard-card">
