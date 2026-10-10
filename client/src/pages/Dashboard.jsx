@@ -1,6 +1,8 @@
 import '../css/dashboard.css'
 import useAutorizaciones from '../hooks/useAutorizaciones'
 import autorizacionesServices from '../services/autorizacionesServices'
+import { useEffect, useState } from 'react'
+import clientesService from '../services/clientesService'
 
 const Dashboard = () => {
   const { admin } = useAutorizaciones()
@@ -9,41 +11,49 @@ const Dashboard = () => {
   const cantidadGerencia = usuarios.filter(usuario => usuario.sector === 'Gerencia').length
 
   const cantidadSoporte = usuarios.filter(usuario => usuario.sector === 'Soporte').length
+  const [cantidadClientes, setCantidadClientes] = useState(null)
+
+  useEffect(() => {
+    clientesService
+      .obtenerClientes()
+      .then((data) => setCantidadClientes(data.length))
+      .catch(() => setCantidadClientes('-'))
+  }, [])
 
   return (
     <div className="dashboard">
 
       <h1>Panel de Control de Clientes</h1>
 
-      
-        <>
-          <div className="user-card">
-            <h3>Usuario conectado</h3>
 
-            <p><strong>Administrador:</strong> {admin.nombre}</p>
-            <p><strong>Email:</strong> {admin.email}</p>
-            <p><strong>Sector:</strong> {admin.sector}</p>
-          </div>
-          <div className="dashboard-cards">
+      <>
+        <div className="user-card">
+          <h3>Usuario conectado</h3>
 
-            <div className="dashboard-card">
-              <h3>Clientes</h3>
-              <p>{usuarios.length}</p>
-            </div>
+          <p><strong>Administrador:</strong> {admin.nombre}</p>
+          <p><strong>Email:</strong> {admin.email}</p>
+          <p><strong>Sector:</strong> {admin.sector}</p>
+        </div>
+        <div className="dashboard-cards">
 
-            <div className="dashboard-card">
-              <h3>Gerencia</h3>
-              <p>{cantidadGerencia}</p>
-            </div>
-
-            <div className="dashboard-card">
-              <h3>Soporte</h3>
-              <p>{cantidadSoporte}</p>
-            </div>
+          <div className="dashboard-card">
+            <h3>Clientes</h3>
+            <p>{cantidadClientes ?? '...'}</p>
           </div>
 
-        </>
-      
+          <div className="dashboard-card">
+            <h3>Gerencia</h3>
+            <p>{cantidadGerencia}</p>
+          </div>
+
+          <div className="dashboard-card">
+            <h3>Soporte</h3>
+            <p>{cantidadSoporte}</p>
+          </div>
+        </div>
+
+      </>
+
 
     </div>
   )
