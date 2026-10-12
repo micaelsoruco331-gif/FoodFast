@@ -10,6 +10,9 @@ const FormCliente = () => {
     const [email, setEmail] = useState("");
     const [telefono, setTelefono] = useState("");
     const [ciudad, setCiudad] = useState("");
+     const [calle, setCalle] = useState("");
+    const [numero, setNumero] = useState("");
+    const [codigoPostal, setCodigoPostal] = useState("");
 
     const [mensaje, setMensaje] = useState("");
     const [error, setError] = useState("");
@@ -49,7 +52,10 @@ const FormCliente = () => {
             },
 
             address: {
-                city: ciudad
+                city: ciudad,
+                street: calle,
+                number: numero ? Number(numero) : undefined,
+                zipcode: codigoPostal
             },
 
             phone: telefono
@@ -73,6 +79,9 @@ const FormCliente = () => {
             setEmail("");
             setTelefono("");
             setCiudad("");
+            setCalle("");
+            setNumero("");
+            setCodigoPostal("");
 
         } catch {
 
@@ -147,6 +156,38 @@ const FormCliente = () => {
                         }
                     />
 
+                </Form.Group>
+                                <Form.Group className="mb-3">
+                    <Form.Label>Calle</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={calle}
+                        onChange={(e) =>
+                            setCalle(e.target.value)
+                        }
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>Número</Form.Label>
+                    <Form.Control
+                        type="number"
+                        value={numero}
+                        onChange={(e) =>
+                            setNumero(e.target.value)
+                        }
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>Código Postal</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={codigoPostal}
+                        onChange={(e) =>
+                            setCodigoPostal(e.target.value)
+                        }
+                    />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="ciudad">
