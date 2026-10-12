@@ -10,7 +10,7 @@ const ListaClientes = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
+    const cargarClientes = () => {
     clientesService
       .obtenerClientes()
       .then((data) => {
@@ -21,6 +21,10 @@ const ListaClientes = () => {
         setError(true);
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    cargarClientes();
   }, []);
 
   const clientesFiltrados = clientes.filter(
@@ -48,7 +52,7 @@ const ListaClientes = () => {
     <div className="clientes-container">
 
       <h1>Clientes</h1>
-      <FormCliente />
+      <FormCliente onClienteCreado={cargarClientes} />
 
       <hr />
 

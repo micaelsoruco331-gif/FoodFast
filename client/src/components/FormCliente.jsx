@@ -3,14 +3,14 @@ import { useState } from "react";
 import { Form, Button, Alert, Spinner } from "react-bootstrap";
 import clientesService from "../services/clientesService";
 
-const FormCliente = () => {
+const FormCliente = ({ onClienteCreado }) => {
 
     const [nombre, setNombre] = useState("");
     const [apellido, setApellido] = useState("");
     const [email, setEmail] = useState("");
     const [telefono, setTelefono] = useState("");
     const [ciudad, setCiudad] = useState("");
-     const [calle, setCalle] = useState("");
+    const [calle, setCalle] = useState("");
     const [numero, setNumero] = useState("");
     const [codigoPostal, setCodigoPostal] = useState("");
 
@@ -73,6 +73,9 @@ const FormCliente = () => {
             setMensaje(
                 `Cliente creado correctamente. ID: ${respuesta.id}`
             );
+                        if (onClienteCreado) {
+                onClienteCreado();
+            }
 
             setNombre("");
             setApellido("");
