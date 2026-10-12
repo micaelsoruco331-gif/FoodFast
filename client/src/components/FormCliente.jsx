@@ -3,12 +3,16 @@ import { useState } from "react";
 import { Form, Button, Alert, Spinner } from "react-bootstrap";
 import clientesService from "../services/clientesService";
 
-const FormCliente = () => {
+const FormCliente = ({ onClienteCreado }) => {
 
     const [nombre, setNombre] = useState("");
+    const [apellido, setApellido] = useState("");
     const [email, setEmail] = useState("");
     const [telefono, setTelefono] = useState("");
     const [ciudad, setCiudad] = useState("");
+    const [calle, setCalle] = useState("");
+    const [numero, setNumero] = useState("");
+    const [codigoPostal, setCodigoPostal] = useState("");
 
     const [mensaje, setMensaje] = useState("");
     const [error, setError] = useState("");
@@ -23,6 +27,7 @@ const FormCliente = () => {
 
         if (
             nombre.trim() === "" ||
+            apellido.trim() === "" ||
             email.trim() === "" ||
             telefono.trim() === "" ||
             ciudad.trim() === ""
@@ -43,11 +48,14 @@ const FormCliente = () => {
 
             name: {
                 firstname: nombre,
-                lastname: "-"
+                lastname: apellido
             },
 
             address: {
-                city: ciudad
+                city: ciudad,
+                street: calle,
+                number: numero ? Number(numero) : undefined,
+                zipcode: codigoPostal
             },
 
             phone: telefono
@@ -65,11 +73,18 @@ const FormCliente = () => {
             setMensaje(
                 `Cliente creado correctamente. ID: ${respuesta.id}`
             );
+                        if (onClienteCreado) {
+                onClienteCreado();
+            }
 
             setNombre("");
+            setApellido("");
             setEmail("");
             setTelefono("");
             setCiudad("");
+            setCalle("");
+            setNumero("");
+            setCodigoPostal("");
 
         } catch {
 
@@ -107,6 +122,17 @@ const FormCliente = () => {
 
                 </Form.Group>
 
+                <Form.Group className="mb-3">
+                    <Form.Label>Apellido</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={apellido}
+                        onChange={(e) =>
+                            setApellido(e.target.value)
+                        }
+                    />
+                </Form.Group>
+
                 <Form.Group className="mb-3" controlId="email">
 
                     <Form.Label>Email</Form.Label>
@@ -133,6 +159,38 @@ const FormCliente = () => {
                         }
                     />
 
+                </Form.Group>
+                                <Form.Group className="mb-3">
+                    <Form.Label>Calle</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={calle}
+                        onChange={(e) =>
+                            setCalle(e.target.value)
+                        }
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>Número</Form.Label>
+                    <Form.Control
+                        type="number"
+                        value={numero}
+                        onChange={(e) =>
+                            setNumero(e.target.value)
+                        }
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>Código Postal</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={codigoPostal}
+                        onChange={(e) =>
+                            setCodigoPostal(e.target.value)
+                        }
+                    />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="ciudad">
