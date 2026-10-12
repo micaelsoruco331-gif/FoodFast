@@ -10,7 +10,7 @@ const ListaClientes = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-    const cargarClientes = () => {
+  const cargarClientes = () => {
     clientesService
       .obtenerClientes()
       .then((data) => {
@@ -52,29 +52,31 @@ const ListaClientes = () => {
     <div className="clientes-container">
 
       <h1>Clientes</h1>
-      <FormCliente onClienteCreado={cargarClientes} />
+      <div className="clientes-superior">
+        <div className="contenedor-buscador">
 
+          <h2 className="titulo-buscador">
+            Buscar Clientes
+          </h2>
+
+          <input
+            className="buscador"
+            type="text"
+            placeholder="Buscar por apellido o ciudad"
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+          />
+
+          <p className="cantidad-clientes">
+            Clientes encontrados: {clientesFiltrados.length}
+          </p>
+
+        </div>
+        <FormCliente onClienteCreado={cargarClientes} />
+      </div>
       <hr />
 
-      <div className="contenedor-buscador">
 
-        <h2 className="titulo-buscador">
-          Buscar Clientes
-        </h2>
-
-        <input
-          className="buscador"
-          type="text"
-          placeholder="Buscar por apellido o ciudad"
-          value={busqueda}
-          onChange={(e) => setBusqueda(e.target.value)}
-        />
-
-        <p className="cantidad-clientes">
-          Clientes encontrados: {clientesFiltrados.length}
-        </p>
-
-      </div>
       <table className="tabla-clientes">
 
         <thead>

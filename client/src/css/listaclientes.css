@@ -120,3 +120,33 @@ input[type="text"]{
 input[type="text"]::placeholder{
     color:#c78aa6;
 } 
+/* Formulario y buscador en dos columnas */
+.clientes-superior {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto 24px;
+}
+
+/* El buscador queda "flotando" al hacer scroll */
+.clientes-superior .contenedor-buscador {
+  position: sticky;
+  top: 24px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+/* En pantallas chicas se apila, con el buscador primero */
+@media (max-width: 900px) {
+  .clientes-superior {
+    grid-template-columns: 1fr;
+  }
+
+  .clientes-superior .contenedor-buscador {
+    position: static;
+    order: -1;
+  }
+}
