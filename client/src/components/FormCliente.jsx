@@ -6,6 +6,7 @@ import clientesService from "../services/clientesService";
 const FormCliente = () => {
 
     const [nombre, setNombre] = useState("");
+    const [apellido, setApellido] = useState("");
     const [email, setEmail] = useState("");
     const [telefono, setTelefono] = useState("");
     const [ciudad, setCiudad] = useState("");
@@ -23,6 +24,7 @@ const FormCliente = () => {
 
         if (
             nombre.trim() === "" ||
+            apellido.trim() === "" ||
             email.trim() === "" ||
             telefono.trim() === "" ||
             ciudad.trim() === ""
@@ -43,7 +45,7 @@ const FormCliente = () => {
 
             name: {
                 firstname: nombre,
-                lastname: "-"
+                lastname: apellido
             },
 
             address: {
@@ -67,6 +69,7 @@ const FormCliente = () => {
             );
 
             setNombre("");
+            setApellido("");
             setEmail("");
             setTelefono("");
             setCiudad("");
@@ -105,6 +108,17 @@ const FormCliente = () => {
                         }
                     />
 
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>Apellido</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={apellido}
+                        onChange={(e) =>
+                            setApellido(e.target.value)
+                        }
+                    />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="email">
